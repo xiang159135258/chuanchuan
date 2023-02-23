@@ -1,31 +1,39 @@
 <template>
     <div>
         <div class="banner" @click="handBannerClick">
-            <img class="banner-img" src="https://imgs.qunarzz.com/sight/p0/2301/2b/2b1330228fd3ae11a3.water.jpg_710x360_2714081f.jpg" alt="" >
+            <img class="banner-img" :src="bannerImg" alt="" >
             <div class="banner-info">
-                <div class="banner-title">北京环球度假区</div>
+                <div class="banner-title">{{this.sightName}}</div>
                 <div class="banner-number">
                     <span class="iconfont icon-icon-test2"></span>
-                    35
+                    {{ this.galleryImgs.length }}
                 </div>
             </div>
         </div>
-        <CommonGallary 
-        :imgs="imgs" 
-        v-show="showGallary" 
-        @close="handleGallaryClose"
-        ></CommonGallary>
+        <FadeAnimation>
+            <CommonGallary 
+            :imgs="galleryImgs" 
+            v-show="showGallary" 
+            @close="handleGallaryClose"
+            ></CommonGallary>
+        </FadeAnimation>
+       
     </div>
 </template>
 
 <script>
 import CommonGallary  from 'common/gallary/Gallary'
+import FadeAnimation from 'common/fade/FadeAnimation'
 export default {
     name: 'DetailBanner',
+    props: {
+        sightName: String,
+        bannerImg: String,
+        galleryImgs: Array
+    },
     data () {
         return {
             showGallary: false,
-            imgs : ["https://imgs.qunarzz.com/sight/p0/2301/14/14a72fe1b49dfc36a3.water.jpg_710x360_03da7434.jpg","https://imgs.qunarzz.com/sight/p0/2301/49/499955bd472067c7a3.water.jpg_1190x550_5a69675c.jpg"]
         }    
     },
     methods: {
@@ -37,7 +45,8 @@ export default {
         }
     },
     components: {
-        CommonGallary
+        CommonGallary,
+        FadeAnimation
     }
 }
 </script>

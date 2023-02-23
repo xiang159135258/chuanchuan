@@ -31,7 +31,7 @@ export default {
     methods : {
         handleScroll () {
             const top = document.documentElement.scrollTop
-            console.log(top)
+            // console.log(top) 
             if (top > 50) {
                 let opacity = top /140
                 opacity = opacity > 1 ? 1 : opacity
@@ -70,6 +70,7 @@ export default {
             color: #fff
     
     .header-fixed
+        z-index: 2
         position : fixed
         top: 0
         left :0
